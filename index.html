@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rouzbeh | Cyber Mode</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: #00ff99;
+    font-family: monospace;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 40px;
+    margin-top: 100px;
+    text-shadow: 0 0 15px #00ff99;
+}
+
+p {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.btn {
+    margin-top: 30px;
+    padding: 12px 30px;
+    border: 1px solid #00ff99;
+    color: #00ff99;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #00ff99;
+    color: black;
+    box-shadow: 0 0 20px #00ff99;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+</style>
+</head>
+
+<body>
+
+<h1>ROUZBEH</h1>
+<p>Cyber Security • Developer • Digital Mind</p>
+<button class="btn" onclick="alert('Access Granted 😎')">ENTER</button>
+
+<canvas id="matrix"></canvas>
+
+<script>
+var canvas = document.getElementById("matrix");
+var ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+var letters = "01";
+letters = letters.split("");
+
+var fontSize = 14;
+var columns = canvas.width / fontSize;
+var drops = [];
+
+for(var x = 0; x < columns; x++)
+drops[x] = 1;
+
+function draw() {
+ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+ctx.fillStyle = "#00ff99";
+ctx.font = fontSize + "px monospace";
+
+for(var i = 0; i < drops.length; i++) {
+var text = letters[Math.floor(Math.random()*letters.length)];
+ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+drops[i] = 0;
+
+drops[i]++;
+}
+}
+
+setInterval(draw, 33);
+</script>
+
+</body>
+</html>
